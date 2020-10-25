@@ -1,0 +1,11 @@
+.APPROVED{
+    color:green;
+}
+
+.DENIED{
+    color:red;
+}
+
+.WAITING{
+    color:darkorange;
+}
