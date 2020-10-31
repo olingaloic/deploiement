@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios from 'axios';
+import { API_URL } from '../Constants';
 
-const STAGE_ETUDIANTS_URL_PUT = "http://localhost:8080/stages/updateEtudiantsAdmits/";
-const STAGES_URL = "http://localhost:8080/stages";
-const STAGES_URL_POST = "http://localhost:8080/stages/createStage";
+const STAGE_ETUDIANTS_URL_PUT = API_URL + "/stages/updateEtudiantsAdmits/";
+const STAGES_URL = API_URL + "/stages";
+const STAGES_URL_POST = API_URL + "/stages/createStage";
 
 class StageService{
 

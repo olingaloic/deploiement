@@ -1,4 +1,6 @@
-const baseURL = "http://localhost:8080/gestionnaires";
+import { API_URL } from '../Constants';
+
+const baseURL = API_URL + "/gestionnaires";
 
 class GestionnaireService{
 

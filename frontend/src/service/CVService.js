@@ -1,7 +1,8 @@
 import axios from 'axios'
 import CV from "../model/CV";
+import { API_URL } from '../Constants';
 
-const CV_URL = "http://localhost:8080/cvs";
+const CV_URL = API_URL + "/cvs";
 
 
 class CVService{
