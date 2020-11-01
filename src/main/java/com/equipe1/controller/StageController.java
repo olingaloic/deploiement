@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 
-@CrossOrigin(origins ="http://localhost:3000")
+@CrossOrigin(origins ="http://aws.projet.integre.react.s3-website.us-east-2.amazonaws.com")
 @RestController
 @RequestMapping("/stages")
 public class StageController {

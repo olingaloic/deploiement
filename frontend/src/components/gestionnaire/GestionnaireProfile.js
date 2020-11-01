@@ -14,7 +14,7 @@ export default class GestionnaireProfile extends Component {
             id = localStorage.getItem("id");
 
         const {data: gestionnaire} = await axios.get(
-            "http://localhost:8080/gestionnaires/get?idGestionnaire=" + id
+            "http://restapiprojetintegre-env.eba-pq9nvjjm.us-east-2.elasticbeanstalk.com/gestionnaires/get?idGestionnaire=" + id
     );
         this.setState({gestionnaire: gestionnaire});
     }

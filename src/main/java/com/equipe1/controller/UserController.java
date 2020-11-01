@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://aws.projet.integre.react.s3-website.us-east-2.amazonaws.com")
 @RestController
 @RequestMapping("/users")
 public class UserController {

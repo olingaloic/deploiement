@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://aws.projet.integre.react.s3-website.us-east-2.amazonaws.com")
 @RestController
 @RequestMapping("/candidatures")
 public class CandidatureController {

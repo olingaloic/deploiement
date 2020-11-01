@@ -27,7 +27,7 @@ export default class HomeEtudiant extends Component {
             id = localStorage.getItem("id");
 
         const {data: etudiant} = await axios.get(
-            "http://localhost:8080/etudiants/get?idEtudiant=" + id
+            "http://restapiprojetintegre-env.eba-pq9nvjjm.us-east-2.elasticbeanstalk.com/etudiants/get?idEtudiant=" + id
     );
         this.setState({etudiant: etudiant});
 

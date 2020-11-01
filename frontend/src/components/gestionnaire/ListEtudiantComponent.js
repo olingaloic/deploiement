@@ -34,7 +34,7 @@ export default class ListEtudiantsComponent extends Component {
     }
     downloadCV = (idEtudiant) => {
             const method = 'GET';
-            const url = 'http://localhost:8080/cvs/get/' + idEtudiant;
+            const url = 'http://restapiprojetintegre-env.eba-pq9nvjjm.us-east-2.elasticbeanstalk.com/cvs/get/' + idEtudiant;
             return () => {
                 axios
                     .request({
