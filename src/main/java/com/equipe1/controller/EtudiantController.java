@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://aws.projet.integre.react.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins = "http://reactveilledeploiementaws.s3-website-us-east-1.amazonaws.com/")
 @RestController
 @RequestMapping("/etudiants")
 public class EtudiantController {
