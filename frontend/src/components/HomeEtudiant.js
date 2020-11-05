@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './../App.css';
 import axios from "axios";
 import CVService from "../service/CVService";
+import { API_URL } from '../Constants';
 
 export default class HomeEtudiant extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ export default class HomeEtudiant extends Component {
             id = localStorage.getItem("id");
 
         const {data: etudiant} = await axios.get(
-            "http://restapiprojetintegre-env.eba-pq9nvjjm.us-east-2.elasticbeanstalk.com/etudiants/get?idEtudiant=" + id
+            API_URL + "/etudiants/get?idEtudiant=" + id
     );
         this.setState({etudiant: etudiant});
 

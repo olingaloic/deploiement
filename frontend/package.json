@@ -25,7 +25,7 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "deploy": "aws s3 cp --recursive ./build s3://aws.projet.integre.react",
+    "deploy": "aws s3 cp --recursive ./build s3://reactveilledeploiementaws",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
