@@ -17,14 +17,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
-    @Column(unique=true)
+    @Column(unique=true, length = 200)
     protected String email;
 
     protected String password;
 
     protected String telephone;
 
-    protected String desc;
+    protected String role;
 
     protected String nom;
 

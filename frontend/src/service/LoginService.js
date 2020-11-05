@@ -14,7 +14,7 @@ class LoginService{
     
     async storage(user) {
         await window.localStorage.setItem("id", user.id);
-        await window.localStorage.setItem("desc", user.desc);
+        await window.localStorage.setItem("desc", user.role);
     }
 
     async logout() {
