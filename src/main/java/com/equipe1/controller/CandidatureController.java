@@ -12,8 +12,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
-//@CrossOrigin(origins = "http://reactveilledeploiementaws.s3-website-us-east-1.amazonaws.com")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://reactveilledeploiementaws.s3-website-us-east-1.amazonaws.com")
 @RestController
 @RequestMapping("/candidatures")
 public class CandidatureController {
