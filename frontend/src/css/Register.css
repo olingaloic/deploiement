@@ -1,0 +1,17 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+  }
+
+.formBox{
+    align-self: center;
+    justify-self: center;
+    width: min-content;
+    margin: auto;
+}

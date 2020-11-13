@@ -1,0 +1,10 @@
+.form-group .control-label:after {
+    content:"*";color:red;
+    text-align: right;
+  }
+
+  .form-group {
+font-size: medium;
+    text-align: left;
+  }
+ 
