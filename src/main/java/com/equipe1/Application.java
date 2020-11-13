@@ -22,10 +22,13 @@ public class Application {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... args) throws Exception {
+				/*
 				service.insertEtudiant();
 				service.insertEmployeur();
 				service.insertStage();
 				service.insertGestionnaire();
+			
+				 */
 			}
 		};
 	}
