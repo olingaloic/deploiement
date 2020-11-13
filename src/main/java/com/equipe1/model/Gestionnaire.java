@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 public class Gestionnaire extends User {
 
     {
-        this.desc = "Gestionnaire";
+        this.role = "Gestionnaire";
     }
 
     @NotBlank

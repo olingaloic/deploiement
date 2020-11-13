@@ -1,5 +1,6 @@
+import { API_URL } from '../Constants';
 
-const baseURL = "http://localhost:8080/users";
+const baseURL = API_URL + "/users";
 
 class LoginService{
 
@@ -13,7 +14,7 @@ class LoginService{
     
     async storage(user) {
         await window.localStorage.setItem("id", user.id);
-        await window.localStorage.setItem("desc", user.desc);
+        await window.localStorage.setItem("desc", user.role);
     }
 
     async logout() {

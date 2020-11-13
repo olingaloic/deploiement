@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_URL } from '../Constants';
 
-const baseURL = "http://localhost:8080/candidatures";
+const baseURL = API_URL + "/candidatures";
 
 class CandidatureService{
     async getAll(){

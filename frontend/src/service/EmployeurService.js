@@ -1,4 +1,6 @@
-const baseURL = "http://localhost:8080/employeurs";
+import { API_URL } from '../Constants';
+
+const baseURL = API_URL + "/employeurs";
 
 class EmployeurService{
     async getAll(){

@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios from 'axios';
+import { API_URL } from '../Constants';
 
-const ETUDIANTS_URL = "http://localhost:8080/etudiants/findAll";
-const baseURL = "http://localhost:8080/etudiants";
-const ETUDIANT_GET = "http://localhost:8080/etudiants/get";
+const ETUDIANTS_URL = API_URL + "/etudiants/findAll";
+const baseURL = API_URL + "/etudiants";
+const ETUDIANT_GET = API_URL + "/etudiants/get";
 
 class EtudiantService{
 

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://reactveilledeploiementaws.s3-website-us-east-1.amazonaws.com")
 @RestController
 @RequestMapping("/etudiants")
 public class EtudiantController {
