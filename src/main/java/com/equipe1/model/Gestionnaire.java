@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Gestionnaire extends User {
@@ -21,4 +21,12 @@ public class Gestionnaire extends User {
 
     @NotBlank
     private String prenom;
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 }

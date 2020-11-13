@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Candidature {
@@ -60,4 +60,5 @@ public class Candidature {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
 }

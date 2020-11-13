@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-@Data
+//@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,5 +30,37 @@ public class CV {
 
     public enum CVStatus {
         APPROVED, DENIED, UNREVIEWED
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public CVStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(CVStatus status) {
+        this.status = status;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 }
