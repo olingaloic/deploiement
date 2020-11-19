@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employeur extends User{
@@ -25,4 +25,21 @@ public class Employeur extends User{
         this.adresse = adresse;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    @Override
+    public String getNom() {
+        return nom;
+    }
+
+    @Override
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }
