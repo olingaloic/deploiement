@@ -1,5 +1,6 @@
+import { API_URL } from '../Constants';
 
-const baseURL = "http://localhost:8080/users";
+const baseURL = API_URL + "/users";
 
 class LoginService{
 

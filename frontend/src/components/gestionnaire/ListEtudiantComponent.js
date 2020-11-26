@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EtudiantService from '../../service/EtudiantService';
 import axios from 'axios'
 import CVService from "../../service/CVService";
+import { API_URL } from '../../Constants';
 
 export default class ListEtudiantsComponent extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class ListEtudiantsComponent extends Component {
     }
     downloadCV = (idEtudiant) => {
             const method = 'GET';
-            const url = 'http://localhost:8080/cvs/get/' + idEtudiant;
+            const url =  API_URL + '/cvs/get/' + idEtudiant;
             return () => {
                 axios
                     .request({

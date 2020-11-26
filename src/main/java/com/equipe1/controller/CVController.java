@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 // TODO: UNTESTED
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://frontend-eq1-420-565-veille-technologique.azurewebsites.net")
 @RestController
 @RequestMapping("/cvs")
 public class CVController {

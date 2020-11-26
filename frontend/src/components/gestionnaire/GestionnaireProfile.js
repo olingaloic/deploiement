@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import axios from "axios";
+import { API_URL } from '../../Constants';
 
 export default class GestionnaireProfile extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class GestionnaireProfile extends Component {
             id = localStorage.getItem("id");
 
         const {data: gestionnaire} = await axios.get(
-            "http://localhost:8080/gestionnaires/get?idGestionnaire=" + id
+            API_URL + "/gestionnaires/get?idGestionnaire=" + id
     );
         this.setState({gestionnaire: gestionnaire});
     }

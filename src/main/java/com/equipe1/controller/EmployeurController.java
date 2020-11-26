@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://frontend-eq1-420-565-veille-technologique.azurewebsites.net")
 @RestController
 @RequestMapping("/employeurs")
 public class EmployeurController {
