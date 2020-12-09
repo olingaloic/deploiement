@@ -1,26 +1,48 @@
-import { API_URL } from '../Constants';
+import axios from "axios";
+import authHeader from './security/auth-header';
 
-const baseURL = API_URL + "/gestionnaires";
+const baseURL = "http://localhost:8080/gestionnaires";
 
 class GestionnaireService{
 
-    async getByPassword(password){
-        let data;
-        await fetch(baseURL +"/password?password=" + password, {method: "GET"} )
-            .then(r => data = r.json())
-            .catch(error => data = {});
-        return data;
+    getGestionnaireById(id){
+        return axios.get(baseURL + "/get?idGestionnaire=" + id, { headers: authHeader() });
     }
 
-    async put(gestionnaire, id){
-        fetch(baseURL + "/update/" + id,
-            {method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(gestionnaire)} )
-            .then(r => r.json());
+    async updatePassword(gestionnaire, id){
+        return axios.put(baseURL + "/updatePassword/" + id, gestionnaire, { headers: authHeader() });
     }
 }
 
 export default new GestionnaireService()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

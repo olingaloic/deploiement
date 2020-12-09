@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface StageRepository extends JpaRepository<Stage, Long> {
     List<Stage> findByEmployeur(Employeur employeur);
+
+    List<Stage> getByStatut(Stage.StageStatus status);
 }

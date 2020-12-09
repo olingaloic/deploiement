@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
-import Employeur from '../model/Employeur';
 import EmployeurService from '../service/EmployeurService'
 import CreateStageComponent from './stage/CreateStageComponent';
-import { Link } from 'react-router-dom';
+
+import AuthService from "../../service/security/auth.service";
 
 class HomeEmployeur extends Component {
     constructor(props) {
         super(props);
-        this.state = { employeur: {}, createStage: false };
+        this.state = { 
+            employeur: {}, 
+            createStage: false, 
+            id: AuthService.getTokenDESC().toUpperCase() === "ROLE_EMPLOYEUR" ? AuthService.getTokenId() : '' 
+        };
         this.handleCreateStage = this.handleCreateStage.bind(this)
-
     }
 
     async componentDidMount() {
-        var id;
-        if (localStorage.getItem("desc") == "Etudiant")
-            id = localStorage.getItem("id");
+        let id = this.state.id;
 
         EmployeurService.getById(id).then((res) => this.setState({ employeur: res }))
     }
 
     handleCreateStage() {
-        console.log(this.state.createStage)
         this.setState({ createStage: !this.state.createStage })
     }
 
@@ -33,7 +33,7 @@ class HomeEmployeur extends Component {
         return (
             <div className="container-fluid">
                
-
+        <h5>Bienvenue employeur {this.state.employeur.id}</h5>
 
             </div>
         );

@@ -3,6 +3,7 @@ package com.equipe1.controller;
 import com.equipe1.model.Etudiant;
 import com.equipe1.model.Stage;
 import com.equipe1.service.StageService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 
-@CrossOrigin(origins ="https://frontend-eq1-420-565-veille-technologique.azurewebsites.net")
+@CrossOrigin(origins ="http://localhost:3000")
 @RestController
 @RequestMapping("/stages")
 public class StageController {
@@ -20,9 +21,16 @@ public class StageController {
         this.stageService = stageService;
     }
 
+    // never used
     @GetMapping(value = "/findAll")
-    public List<Stage> getAllStages(){
-        return stageService.getStages();
+    public List<Stage> getAllStages(@RequestParam("idSession") Long idSession){
+        return stageService.getStages(idSession);
+    }
+
+    // never used
+    @GetMapping(value = "/getStagesSession")
+    public List<Stage> getStagesSessionEnCours(){
+        return stageService.getStagesSessionEnCours();
     }
 
     @GetMapping("getStage")
@@ -30,14 +38,15 @@ public class StageController {
         return stageService.findStageById(idStage);
     }
 
-    @GetMapping("/stageByEmployeurId")
-    public List<Stage> getStageByEmployeurId(@RequestParam("idEmployeur") Long idEmployeur){
-        return stageService.getStagesByEmployeur(idEmployeur);
+    // never used
+    @GetMapping("/stageByEmployeurId/{idEmployeur}")
+    public List<Stage> getStageByEmployeurId(@PathVariable("idEmployeur") Long idEmployeur, @RequestParam("idSession") Long idSession){
+        return stageService.getStagesByEmployeur(idEmployeur, idSession);
     }
 
-    @GetMapping("/stagesEtudiant")
-    public List<Stage> getStagesEtudiant(@RequestParam("idEtudiant") Long idEtudiant){
-        return stageService.getStagesEtudiant(idEtudiant);
+    @GetMapping("/stagesEtudiant/{idEtudiant}")
+    public List<Stage> getStagesEtudiant(@PathVariable("idEtudiant") Long idEtudiant, @RequestParam("idSession") Long idSession){
+        return stageService.getStagesEtudiant(idEtudiant, idSession);
     }
 
     @PostMapping("createStage")
@@ -46,14 +55,10 @@ public class StageController {
     }
 
     @PutMapping("updateStage/{id}")
-    public Stage updateStage(@RequestBody Stage stage, @PathVariable Long id){
+    public Stage updateStage(@RequestBody Stage stage, @PathVariable Long id) throws Exception {
         return stageService.updateStage(stage, id);
     }
 
-    @PutMapping("updateStatusStage/{id}")
-    public Stage updateStatusStage(@RequestBody Stage stage, @PathVariable Long id) throws Exception {
-        return stageService.updateStatus(stage, id);
-    }
 
     @PutMapping("updateEtudiantsAdmits/{stageId}")
     public Stage updateEtudiantsAdmits(@PathVariable long stageId, @RequestBody List<Etudiant> etudiants){
@@ -66,7 +71,27 @@ public class StageController {
     }
 
     @GetMapping("approuves")
-    public List<Stage> getAllStagesApprouves(){
-        return stageService.getStagesApprouves();
+    public List<Stage> getAllStagesApprouves(@RequestParam("idSession") Long idSession){
+        return stageService.getStagesApprouves(idSession);
+    }
+
+    @GetMapping("nonComble")
+    public List<Stage> getAllStagesNonComble(@RequestParam("idSession") Long idSession){
+        return stageService.getStagesNonComble(idSession);
+    }
+
+    @GetMapping("nonApprouves")
+    public List<Stage> getAllStagesNonApprouves(@RequestParam("idSession") Long idSession){
+        return stageService.getStagesNonApprouves(idSession);
+    }
+
+    @GetMapping("/stagesApprouvesByEmployeurId/{idEmployeur}")
+    public List<Stage> getStagesApprouvesByEmployeurId(@PathVariable("idEmployeur") Long idEmployeur, @RequestParam("idSession") Long idSession){
+        return stageService.getStagesApprouvesByEmployeur(idEmployeur, idSession);
+    }
+
+    @GetMapping("/stagesNonApprouvesByEmployeurId/{idEmployeur}")
+    public List<Stage> getStagesNonApprouvesByEmployeurId(@PathVariable("idEmployeur") Long idEmployeur, @RequestParam("idSession") Long idSession){
+        return stageService.getStagesNonApprouvesByEmployeur(idEmployeur, idSession);
     }
 }

@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class GestionnaireServiceTest {
@@ -83,7 +86,7 @@ class GestionnaireServiceTest {
     }
 
     @Test
-    void testUpdateGestionnaire() {
+    void testUpdateGestionnairePassword() {
         // Arrange + Act
         g1.setId(1l);
         g1.setPassword("12345");
@@ -95,32 +98,12 @@ class GestionnaireServiceTest {
         putContent.setPassword("totototo");
         doReturn(putContent).when(repository).save(any());
         doReturn(Optional.of(g1)).when(repository).findById(g1.getId());
-        Gestionnaire updatedGestionnaire = service.updateGestionnaire(putContent, gestionnaire.getId());
+        Gestionnaire updatedGestionnaire = service.updateGestionnairePassword(putContent, gestionnaire.getId());
         // Assert
         Assertions.assertNotNull(updatedGestionnaire);
         Assertions.assertEquals(1l, updatedGestionnaire.getId());
         Assertions.assertEquals(g1.getNom(), updatedGestionnaire.getNom());
-        Assertions.assertEquals("totototo", updatedGestionnaire.getPassword());
-    }
-
-    @Test
-    void testFindGestionnaireByPassword() {
-        // Arrange
-        doReturn(g1).when(repository).findByPassword("123456");
-        // Act
-        Gestionnaire gestionnaire = service.getGestionnaireByPassword("123456");
-        // Assert
-        Assertions.assertNotNull(gestionnaire);
-        Assertions.assertSame(gestionnaire, g1);
-    }
-
-    @Test
-    void testFindGestionnaireByPasswordNotFound() {
-        // Arrange
-        doReturn(null).when(repository).findByPassword("none");
-        // Act
-        Gestionnaire gestionnaire = service.getGestionnaireByPassword("none");
-        // Assert
-        Assertions.assertNull(gestionnaire);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        Assertions.assertTrue(encoder.matches("totototo", updatedGestionnaire.getPassword()));
     }
 }

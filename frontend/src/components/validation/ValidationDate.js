@@ -5,7 +5,7 @@ class ValidationDate extends Component {
         const {field} = this.props;
         return (
             <div>
-                <div className="badge alert-danger">{ field }</div>
+                <div  className="text-danger">{ field }</div>
             </div>
         );
     }

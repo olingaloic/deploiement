@@ -1,14 +1,15 @@
 package com.equipe1.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
+
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -18,12 +19,22 @@ import java.util.Set;
 public class Employeur extends User{
 
     {
-        this.desc = "Employeur";
+        this.role = "Employeur";
     }
     private String adresse;
     private String nom;
-    public Employeur(String nomEntreprise, String telephone, String adresse) {
-        this.nom = nomEntreprise;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employeur")
+    protected List<EvaluationMilieuStage> evaluationMilieuStage;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employeur")
+    protected List<EvaluationStagiaire> evaluationStagiaires;
+
+
+    public Employeur(String nom, String telephone, String adresse) {
+        this.nom = nom;
         this.telephone = telephone;
         this.adresse = adresse;
     }

@@ -2,12 +2,13 @@ package com.equipe1.controller;
 
 import com.equipe1.model.Employeur;
 import com.equipe1.service.EmployeurService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = "https://frontend-eq1-420-565-veille-technologique.azurewebsites.net")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/employeurs")
 public class EmployeurController {
@@ -38,8 +39,8 @@ public class EmployeurController {
         return employeurService.saveEmployeur(employeur);
     }
 
-    @PutMapping("update/{id}")
-    public Employeur updateEmployeur(@Valid @RequestBody Employeur employeur, @PathVariable Long id){
-        return employeurService.updateEmployeur(employeur, id);
+    @PutMapping("updatePassword/{id}")
+    public Employeur updateEmployeurPassword(@Valid @RequestBody Employeur employeur, @PathVariable Long id){
+        return employeurService.updateEmployeurPassword(employeur, id);
     }
 }

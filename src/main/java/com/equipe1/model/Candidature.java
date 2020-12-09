@@ -1,44 +1,46 @@
 package com.equipe1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Candidature {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
+
     @ManyToOne
     private Etudiant etudiant;
+
+
     @OneToOne
     private Stage stage;
-    private String statut;
+    private CandidatureStatut statut;
+    @JsonIgnore
+    @OneToOne(mappedBy = "candidature")
+    private Contrat contrat;
+    private boolean isEvaluee;
 
-    public String getStatut() {
-        return statut;
+    public Candidature() {
+        this.statut = CandidatureStatut.EN_ATTENTE;
     }
 
-    public void setStatut(String statut) {
-        this.statut = statut;
+    public Candidature(Etudiant etudiant, Stage stage) {
+        this.etudiant = etudiant;
+        this.stage = stage;
+        this.statut = CandidatureStatut.EN_ATTENTE;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public Candidature(Etudiant etudiant, Stage stage, String statut) {
-        this.etudiant = etudiant;
-        this.stage = stage;
-        this.statut = statut;
     }
 
     public void setId(Long id) {
@@ -59,5 +61,18 @@ public class Candidature {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+
+    public CandidatureStatut getStatut() {
+        return statut;
+    }
+
+    public void setStatut(CandidatureStatut statut) {
+        this.statut = statut;
+    }
+
+    public enum CandidatureStatut {
+        EN_ATTENTE, REFUSE, CHOISI, APPROUVE
     }
 }

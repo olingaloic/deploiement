@@ -2,12 +2,13 @@ package com.equipe1.controller;
 
 import com.equipe1.model.Gestionnaire;
 import com.equipe1.service.GestionnaireService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "https://frontend-eq1-420-565-veille-technologique.azurewebsites.net")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController()
 @RequestMapping("/gestionnaires")
 public class GestionnaireController {
@@ -18,6 +19,7 @@ public class GestionnaireController {
         this.gestionnaireService = service;
     }
 
+    // never used
     @GetMapping("findAll")
     public List<Gestionnaire> getAllGestionnaire(){
         return gestionnaireService.getGestionnaires();
@@ -33,13 +35,8 @@ public class GestionnaireController {
         return gestionnaireService.saveGestionnaire(gestionnaire);
     }
 
-    @PutMapping("update/{id}")
-    public Gestionnaire updateGestionnaire(@RequestBody Gestionnaire gestionnaire, @PathVariable Long id){
-        return gestionnaireService.updateGestionnaire(gestionnaire, id);
-    }
-
-    @GetMapping("password")
-    public Gestionnaire getGestionnaireByPassword(@RequestParam("password") String password){
-        return gestionnaireService.getGestionnaireByPassword(password);
+    @PutMapping("updatePassword/{id}")
+    public Gestionnaire updateGestionnairePassword(@RequestBody Gestionnaire gestionnaire, @PathVariable Long id){
+        return gestionnaireService.updateGestionnairePassword(gestionnaire, id);
     }
 }

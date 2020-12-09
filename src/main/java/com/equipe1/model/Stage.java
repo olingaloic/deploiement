@@ -1,9 +1,9 @@
 package com.equipe1.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -14,8 +14,11 @@ public class Stage {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String titre;
+
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private Employeur employeur;
+
     private String description;
     private String exigences;
     private LocalDate dateDebut;
@@ -23,22 +26,33 @@ public class Stage {
     private LocalDate dateLimiteCandidature;
     private float nbHeuresParSemaine;
     private int nbAdmis;
-    private boolean isOuvert;
     private String programme;
     private String ville;
     private StageStatus statut;
     private int salaire;
 
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Session session;
 
+    @ToString.Exclude
     @ManyToMany
     private Set<Etudiant> etudiantsAdmits;
 
+    //@OneToMany(mappedBy = "stage")
+    //private Set<Etudiant> etudiant;
+
     public Stage() {
-        this.isOuvert = false;
-        this.statut = StageStatus.WAITING;
+        this.statut = StageStatus.EN_ATTENTE;
     }
 
     public enum StageStatus {
-        WAITING, APPROVED, DENIED
+        EN_ATTENTE, APPROUVÉ, REFUSÉ
     }
+
+    public boolean isOuvert() {
+        return dateLimiteCandidature.isAfter(LocalDate.now());
+    }
+
+
 }

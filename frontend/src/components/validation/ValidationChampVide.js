@@ -6,7 +6,7 @@ class ValidationChamp extends Component {
         const {field} = this.props;
         return (
             <div>
-                <div className="badge alert-danger">Veuillez saisir { field } valide</div>
+                <div  className="text-danger">Veuillez saisir { field } valide</div>
             </div>
         );
     }

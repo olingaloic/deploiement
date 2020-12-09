@@ -1,62 +1,59 @@
 import axios from 'axios';
-import { API_URL } from '../Constants';
+import authHeader from './security/auth-header';
 
-const STAGE_ETUDIANTS_URL_PUT = API_URL + "/stages/updateEtudiantsAdmits/";
-const STAGES_URL = API_URL + "/stages";
-const STAGES_URL_POST = API_URL + "/stages/createStage";
+const STAGES_URL = "http://localhost:8080/stages";
+
 
 class StageService{
 
-    getStages(){
-        return axios.get(STAGES_URL + "/findAll");
+    getStagesApprouves(idSession){
+        return axios.get(STAGES_URL + "/approuves", { params: { idSession: idSession}, headers: authHeader() });
     }
 
-    getStagesApprouves(){
-        return axios.get(STAGES_URL + "/approuves");
+    getStagesNonApprouves(idSession){
+        return axios.get(STAGES_URL + "/nonApprouves", { params: { idSession: idSession}, headers: authHeader() });
+    }
+
+    getStagesNonCombles(idSession){
+        return axios.get(STAGES_URL + "/nonComble", { params: { idSession: idSession}, headers: authHeader() });
     }
     
     getStageById(id){
-        return axios.get(STAGES_URL + "/getStage?idStage=" + id);
+        return axios.get(STAGES_URL + "/getStage?idStage=" + id, { headers: authHeader() });
     }
 
-    getStagesByEmployeurId(idEmployeur){
-        return axios.get(STAGES_URL + "/stageByEmployeurId?idEmployeur="+ idEmployeur);
-    }
-
-    getStagesEtudiant(idEtudiant){
-        return axios.get(STAGES_URL + "/stagesEtudiant?idEtudiant="+ idEtudiant);
+    getStagesEtudiant(idEtudiant, idSession){
+        return axios.get(STAGES_URL + "/stagesEtudiant/"+ idEtudiant, { params: { idSession: idSession}, headers: authHeader() });
     }
     
     getEtudiantsByStageId(idStage) {
-        return axios.get(STAGES_URL + "/getEtudiantsAdmits/" + idStage);
-    }
-
-    async getById(id) {
-        let data;
-        await fetch(STAGES_URL + "/getStage?idStage=" + id, {method: "GET"})
-            .then(r => data = r.json())
-            .catch(error => data = {});
-        return data;
+        return axios.get(STAGES_URL + "/getEtudiantsAdmits/" + idStage, { headers: authHeader() });
     }
 
     async updateStage(stage, id){
-        fetch( STAGES_URL + "/updateStatusStage/"+ id,
+        fetch( STAGES_URL + "/updateStage/"+ id,
             {method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(stage)} )
             .then(r => r.json())
-            .catch(error => console.error('Error:', error))
-            .then(response => console.log('Success:', response));
     }
 
     createStage(stage){
-        return axios.post(STAGES_URL_POST, stage)
+        return axios.post(STAGES_URL + "/createStage", stage, { headers: authHeader() })
     }
 
     addEtudiants(id, etudiants){
-        return axios.put(STAGE_ETUDIANTS_URL_PUT + id, etudiants);
+        return axios.put(STAGES_URL + "/updateEtudiantsAdmits/" + id, etudiants, { headers: authHeader() });
+    }
+
+    getStagesApprouvesByEmployeurId(idEmployeur, idSession){
+        return axios.get(STAGES_URL + "/stagesApprouvesByEmployeurId/" + idEmployeur, { params: { idSession: idSession}, headers: authHeader() });
+    }
+
+    getStagesNonApprouvesByEmployeurId(idEmployeur, idSession){
+        return axios.get(STAGES_URL + "/stagesNonApprouvesByEmployeurId/" + idEmployeur, { params: { idSession: idSession}, headers: authHeader() });
     }
 }
 

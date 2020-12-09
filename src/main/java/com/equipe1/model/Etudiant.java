@@ -1,13 +1,11 @@
 package com.equipe1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -17,8 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class Etudiant extends User {
 
     {
-        this.desc = "Etudiant";
-
+        this.role = "Etudiant";
     }
 
     @NotBlank
@@ -37,4 +34,24 @@ public class Etudiant extends User {
 
     @OneToOne
     private CV cv;
+
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToOne(mappedBy = "etudiant")
+    private EvaluationStagiaire evaluationStagiaire;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "etudiant")
+    private EvaluationMilieuStage evaluationMilieuStage;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Session> sessions;
+
+    private boolean isEnregistre;
+
 }

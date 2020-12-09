@@ -1,10 +1,13 @@
 package com.equipe1.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -17,15 +20,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
-    @Column(unique=true)
+    @Column(unique=true, length = 250)
     protected String email;
 
     protected String password;
 
     protected String telephone;
 
-    protected String desc;
+    protected String role;
 
     protected String nom;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
 }

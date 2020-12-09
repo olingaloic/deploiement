@@ -1,50 +1,90 @@
 import axios from "axios";
-import { API_URL } from '../Constants';
+import authHeader from './security/auth-header';
 
-const baseURL = API_URL + "/candidatures";
+const baseURL = "http://localhost:8080/candidatures";
+
 
 class CandidatureService{
-    async getAll(){
-        let data;
-        await fetch(baseURL +"/findAll", {method: "GET"} )
-            .then(r => data = r.json())
-            .catch(error => data = {});
-        return data;
-    }
 
     async getById(id) {
         let data;
-        await fetch(baseURL + "/get?idCandidature=" + id, {method: "GET"})
+        await fetch(baseURL + "/get?idCandidature=" + id, {method: "GET", headers: authHeader()})
             .then(r => data = r.json())
             .catch(error => data = {});
         return data;
     }
-    async getByEtudiant(idEtudiant) {
-        return axios.get(baseURL + "/getByEtudiant?idEtudiant="+ idEtudiant);
 
+    getByEtudiant(idEtudiant, idSession) {
+        return axios.get(baseURL + "/getByEtudiant/" + idEtudiant, { params: { idSession: idSession}, headers: authHeader() });
+    }
+
+    getByStage(idStage) {
+        return axios.get(baseURL + "/getByStage?stage=" + idStage, { headers: authHeader() });
     }
 
     async post(idEtudiant, idStage){
-        const formData = new FormData();
-        formData.append('idEtudiant', idEtudiant);
-        formData.append('idStage', idStage);
-        const options = {
-            method: 'POST',
-            body: formData
-        };
-        fetch(baseURL + "/createCandidature", options);
-
+        return axios.post(baseURL + "/createCandidature?idEtudiant=" + idEtudiant + "&idStage=" + idStage);
     }
 
-    async put(candidature,id){
-        fetch(baseURL + "/update/"+id,
-            {method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(candidature)} )
-            .then(r => r.json());
+    async putCandidatureChoisi(id){
+        return axios.put(baseURL + "/updateChoisi/" + id, { headers: authHeader() });
+    }
+
+    async putCandidatureApprouve(id){
+        return axios.put(baseURL + "/updateApprouve/" + id, { headers: authHeader() });
+    }
+
+    async getCandidatureChoisi(id){
+        let data;
+        await fetch(baseURL + "/getChoisi/" + id, {method: "GET", headers: authHeader()})
+            .then(r => data = r.json())
+            .catch(error => data = {});
+        return data;
+    }
+
+
+    async getCandidaturesChoisis(idSession) {
+        return await axios.get(baseURL +"/getAllChoisis", { params: { idSession: idSession}, headers: authHeader() });
+    }
+
+    async getCandidaturesAEvaluerParEmployeur(idEmployeur, idSession) {
+        return axios.get(baseURL + "/getListAEvaluer/" + idEmployeur, { params: { idSession: idSession}, headers: authHeader() });
+    }
+
+    async getCandidaturesEmployeurNonEvalues(id) {
+        return await axios.get(baseURL + "/getListByEmployeurNonEvalues/" + id, { headers: authHeader() });
     }
 }
 
 export default new CandidatureService()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

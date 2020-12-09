@@ -1,28 +1,34 @@
-import axios from 'axios'
-import CV from "../model/CV";
-import { API_URL } from '../Constants';
+import axios from 'axios';
 
-const CV_URL = API_URL + "/cvs";
+import authHeader from './security/auth-header';
 
+const CV_URL = "http://localhost:8080/cvs";
 
 class CVService{
 
     createCV(idEtudiant, formData){
-        return axios.put(CV_URL + "/create/" + idEtudiant, formData)
-
+        return axios.put(CV_URL + "/create/" + idEtudiant, formData, { headers: authHeader() })
     }
-    getCVByEtudiant(idEtudiant){
 
+    async getCVByEtudiant(etudiant) {
+        const method = 'GET';
+        const url = CV_URL + '/get/' + etudiant.id;
+        return (axios.request({
+                url,
+                method,
+                responseType: 'blob',
+                headers: authHeader()
+            }))
     }
+
     updateCVStatus(isValid, id){
-        console.log(isValid);
         const formData = new FormData();
         formData.append('isValid', isValid);
         const options = {
             method: 'PUT',
             body: formData
         };
-        return axios.put(CV_URL + "/update/" + id, formData)
+        return axios.put(CV_URL + "/update/" + id, formData, { headers: authHeader() })
     }
 }
 

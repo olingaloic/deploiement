@@ -1,11 +1,11 @@
-.APPROVED{
-    color:green;
+.APPROUVÉ{
+    color:green !important;
 }
 
-.DENIED{
-    color:red;
+.REFUSÉ{
+    color:red !important;
 }
 
-.WAITING{
-    color:darkorange;
+.EN_ATTENTE{
+    color:darkorange !important;
 }
