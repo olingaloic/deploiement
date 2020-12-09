@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from './security/auth-header';
 
-const baseURL = "http://localhost:8080/api/candidatures";
+const baseURL = "https://azure-veille-technologique.azurewebsites.net/api/candidatures";
 
 
 class CandidatureService{

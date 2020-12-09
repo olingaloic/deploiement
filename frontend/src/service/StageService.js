@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './security/auth-header';
 
-const STAGES_URL = "http://localhost:8080/api/stages";
+const STAGES_URL = "https://azure-veille-technologique.azurewebsites.net/api/stages";
 
 
 class StageService{

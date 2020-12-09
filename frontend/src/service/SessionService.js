@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = "http://localhost:8080/api/sessions/"
+const BASE_URL = "https://azure-veille-technologique.azurewebsites.net/api/sessions/"
 
 class SessionService {
 

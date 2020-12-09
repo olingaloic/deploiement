@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api/users/"
+const BASE_URL = "https://azure-veille-technologique.azurewebsites.net/api/users/"
 
 class UserService {
     
