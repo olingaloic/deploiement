@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './security/auth-header';
 
-const baseURL = "http://localhost:8080/employeurs";
+const baseURL = "http://localhost:8080/api/employeurs";
 
 class EmployeurService{
 
@@ -25,34 +25,3 @@ class EmployeurService{
 }
 
 export default new EmployeurService()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

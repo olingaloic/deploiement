@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './security/auth-header';
 
-const STAGES_URL = "http://localhost:8080/stages";
+const STAGES_URL = "http://localhost:8080/api/stages";
 
 
 class StageService{

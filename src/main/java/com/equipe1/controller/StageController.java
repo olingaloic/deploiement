@@ -13,7 +13,7 @@ import java.util.Set;
 
 //@CrossOrigin(origins ="http://localhost:3000")
 @RestController
-@RequestMapping("/stages")
+@RequestMapping("/api/stages")
 public class StageController {
     private StageService stageService;
 

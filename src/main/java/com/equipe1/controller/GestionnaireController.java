@@ -10,7 +10,7 @@ import java.util.Optional;
 
 //@CrossOrigin(origins = "http://localhost:3000")
 @RestController()
-@RequestMapping("/gestionnaires")
+@RequestMapping("/api/gestionnaires")
 public class GestionnaireController {
 
     private GestionnaireService gestionnaireService;

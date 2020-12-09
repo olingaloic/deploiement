@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from './security/auth-header';
 
-const baseURL = "http://localhost:8080/candidatures";
+const baseURL = "http://localhost:8080/api/candidatures";
 
 
 class CandidatureService{

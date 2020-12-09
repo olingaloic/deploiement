@@ -1,8 +1,8 @@
 import axios from 'axios';
 import authHeader from './security/auth-header';
 
-const baseURLStagiaire = "http://localhost:8080/evaluationStagiaire";
-const baseURLMilieuStage = "http://localhost:8080/evaluationMilieuStage";
+const baseURLStagiaire = "http://localhost:8080/api/evaluationStagiaire";
+const baseURLMilieuStage = "http://localhost:8080/api/evaluationMilieuStage";
 
 class EvaluationService{
 
