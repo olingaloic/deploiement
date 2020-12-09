@@ -34,3 +34,4 @@ build/
 
 ### react ###
 /node_modules
+package-lock.json
