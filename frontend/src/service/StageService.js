@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './security/auth-header';
+import { API_URL } from '../Constants';
 
-const STAGES_URL = "https://azure-veille-technologique.azurewebsites.net/api/stages";
+const STAGES_URL = API_URL + "/api/stages";
 
 
 class StageService{

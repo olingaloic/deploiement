@@ -1,8 +1,9 @@
 import axios from 'axios';
 import authHeader from './security/auth-header';
+import { API_URL } from '../Constants';
 
-const baseURLStagiaire = "https://azure-veille-technologique.azurewebsites.net/api/evaluationStagiaire";
-const baseURLMilieuStage = "https://azure-veille-technologique.azurewebsites.net/api/evaluationMilieuStage";
+const baseURLStagiaire = API_URL + "/api/evaluationStagiaire";
+const baseURLMilieuStage = API_URL + "/api/evaluationMilieuStage";
 
 class EvaluationService{
 

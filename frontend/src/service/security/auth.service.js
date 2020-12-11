@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_URL } from '../Constants';
 
-const API_URL = "https://azure-veille-technologique.azurewebsites.net/api/auth/";
+const URL = API_URL + "/api/auth/";
 
 class AuthService {
 
@@ -29,7 +30,7 @@ class AuthService {
   }
 
   login(username, password) {
-    return axios.post(API_URL + "signin", {username, password})
+    return axios.post(URL + "signin", {username, password})
                 .then(response => {
                   if (response.data.accessToken) {
                       window.localStorage.setItem("user", JSON.stringify(response.data));
@@ -39,7 +40,7 @@ class AuthService {
   }
 
   async validate(username, password) {
-    return await axios.post(API_URL + "validate", {username, password})
+    return await axios.post(URL + "validate", {username, password})
                       .then(response => { return response.data; });
   }
 

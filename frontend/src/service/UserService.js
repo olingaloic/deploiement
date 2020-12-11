@@ -1,4 +1,6 @@
-const BASE_URL = "https://azure-veille-technologique.azurewebsites.net/api/users/"
+import { API_URL } from '../Constants';
+
+const BASE_URL = API_URL + "/api/users/"
 
 class UserService {
     

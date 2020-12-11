@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 import authHeader from './security/auth-header';
+import { API_URL } from '../Constants';
 
-const CV_URL = "https://azure-veille-technologique.azurewebsites.net/api/cvs";
+const CV_URL = API_URL + "/api/cvs";
 
 class CVService{
 

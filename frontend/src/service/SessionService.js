@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = "https://azure-veille-technologique.azurewebsites.net/api/sessions/"
+import { API_URL } from '../Constants';
+
+const BASE_URL = API_URL + "/api/sessions/"
 
 class SessionService {
 
